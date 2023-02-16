@@ -1,0 +1,114 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/ngx-admin-demo/src",
+  "prefix": "ngx",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ngx-admin-demo",
+        "index": "apps/ngx-admin-demo/src/index.html",
+        "main": "apps/ngx-admin-demo/src/main.ts",
+        "polyfills": "apps/ngx-admin-demo/src/polyfills.ts",
+        "tsConfig": "apps/ngx-admin-demo/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ngx-admin-demo/src/favicon.ico",
+          "apps/ngx-admin-demo/src/assets"
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.css",
+          "node_modules/typeface-exo/index.css",
+          "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+          "node_modules/ionicons/scss/ionicons.scss",
+          "node_modules/@fortawesome/fontawesome-free/css/all.css",
+          "node_modules/socicon/css/socicon.css",
+          "node_modules/nebular-icons/scss/nebular-icons.scss",
+          "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
+          "node_modules/leaflet/dist/leaflet.css",
+          "apps/ngx-admin-demo/src/app/@theme/styles/styles.scss",
+          "apps/ngx-admin-demo/src/styles.scss"],
+        "scripts": [
+          "node_modules/pace-js/pace.min.js",
+          "node_modules/tinymce/tinymce.min.js",
+          "node_modules/tinymce/themes/modern/theme.min.js",
+          "node_modules/tinymce/plugins/link/plugin.min.js",
+          "node_modules/tinymce/plugins/paste/plugin.min.js",
+          "node_modules/tinymce/plugins/table/plugin.min.js",
+          "node_modules/echarts/dist/echarts.min.js",
+          "node_modules/echarts/dist/extension/bmap.min.js",
+          "node_modules/chart.js/dist/Chart.min.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ngx-admin-demo/src/environments/environment.ts",
+              "with": "apps/ngx-admin-demo/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ngx-admin-demo:build:production"
+        },
+        "development": {
+          "browserTarget": "ngx-admin-demo:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ngx-admin-demo:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ngx-admin-demo/**/*.ts",
+          "apps/ngx-admin-demo/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ngx-admin-demo"],
+      "options": {
+        "jestConfig": "apps/ngx-admin-demo/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["app"]
+}
